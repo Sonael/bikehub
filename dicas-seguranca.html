@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dicas de Segurança - BikeHub Recife</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="img/bicycle.png" alt="Logo BikeHub Recife">
+        <h1>BikeHub Recife</h1>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="dados.html">Dados</a></li>
+          <li><a href="forum.html">Fórum</a></li>
+          <li><a href="wiki.html">Wiki</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <!-- Informações do usuário logado -->
+        <div id="user-info" style="display: none;">
+          <div class="user-dropdown">
+            <button class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+              <i class="fa-solid fa-user"></i>
+              <span id="user-name">Usuário</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="user-dropdown-menu" id="user-dropdown-menu">
+              <a href="perfil.html" class="dropdown-item">
+                <i class="fa-solid fa-user-circle"></i> Ver Perfil
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="fa-solid fa-question-circle"></i> Ajuda
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" onclick="logout()" class="dropdown-item logout">
+                <i class="fa-solid fa-sign-out-alt"></i> Sair
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Botão de login (quando não logado) -->
+        <div id="login-button">
+          <a href="login.html" class="btn btn-primary">
+            <i class="fa-solid fa-sign-in-alt"></i> Entrar
+          </a>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav-menu">
+    <a href="mapa.html">Mapa</a>
+    <a href="dados.html">Dados</a>
+    <a href="forum.html">Fórum</a>
+    <a href="wiki.html">Wiki</a>
+    <div id="mobile-auth-section">
+      <!-- Será preenchido dinamicamente -->
+    </div>
+  </nav>
+
+  <main class="container page-content">
+    <div class="safety-header">
+      <h1><i class="fa-solid fa-shield-alt"></i> Dicas de Segurança para Ciclistas</h1>
+      <div class="safety-divider"></div>
+      <p>Sua segurança é nossa prioridade. Confira as principais dicas para pedalar com segurança no Recife.</p>
+    </div>
+
+    <div class="safety-content">
+      <!-- Equipamentos de Proteção -->
+      <section class="safety-section">
+        <h2><i class="fa-solid fa-hard-hat"></i> Equipamentos de Proteção Individual</h2>
+        <div class="safety-grid">
+          <div class="safety-card">
+            <div class="safety-icon">
+              <i class="fa-solid fa-hard-hat"></i>
+            </div>
+            <h3>Capacete</h3>
+            <p>Use sempre capacete certificado pelo INMETRO. Ele pode reduzir em até 85% o risco de lesões na cabeça em caso de acidente.</p>
+            <div class="safety-tip">
+              <strong>Dica:</strong> Verifique se o capacete está bem ajustado e substitua a cada 3-5 anos.
+            </div>
+          </div>
+          
+          <div class="safety-card">
+            <div class="safety-icon">
+              <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <h3>Iluminação</h3>
+            <p>Luz branca dianteira e vermelha traseira são obrigatórias no período noturno (18h às 6h).</p>
+            <div class="safety-tip">
+              <strong>Dica:</strong> Use luzes piscantes para chamar mais atenção dos motoristas.
+            </div>
+          </div>
+          
+          <div class="safety-card">
+            <div class="safety-icon">
+              <i class="fa-solid fa-eye"></i>
+            </div>
+            <h3>Vestuário Reflexivo</h3>
+            <p>Roupas claras e elementos reflexivos aumentam significativamente sua visibilidade.</p>
+            <div class="safety-tip">
+              <strong>Dica:</strong> Coletes reflexivos são baratos e podem salvar sua vida.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Regras de Trânsito -->
+      <section class="safety-section">
+        <h2><i class="fa-solid fa-traffic-light"></i> Regras de Trânsito</h2>
+        <div class="rules-container">
+          <div class="rule-item">
+            <div class="rule-icon">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="rule-content">
+              <h4>Trafegue no mesmo sentido dos veículos</h4>
+              <p>Nunca ande na contramão. Mantenha-se sempre à direita da via.</p>
+            </div>
+          </div>
+          
+          <div class="rule-item">
+            <div class="rule-icon">
+              <i class="fa-solid fa-hand-paper"></i>
+            </div>
+            <div class="rule-content">
+              <h4>Sinalize suas intenções</h4>
+              <p>Use gestos com as mãos para indicar conversões e mudanças de direção.</p>
+            </div>
+          </div>
+          
+          <div class="rule-item">
+            <div class="rule-icon">
+              <i class="fa-solid fa-stop-circle"></i>
+            </div>
+            <div class="rule-content">
+              <h4>Respeite semáforos e sinalizações</h4>
+              <p>Ciclistas devem obedecer às mesmas regras que os veículos.</p>
+            </div>
+          </div>
+          
+          <div class="rule-item">
+            <div class="rule-icon">
+              <i class="fa-solid fa-road"></i>
+            </div>
+            <div class="rule-content">
+              <h4>Use ciclovias e ciclofaixas</h4>
+              <p>Sempre que disponíveis, utilize a infraestrutura cicloviária.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Situações de Perigo -->
+      <section class="safety-section">
+        <h2><i class="fa-solid fa-exclamation-triangle"></i> Situações de Perigo</h2>
+        <div class="danger-alerts">
+          <div class="danger-alert">
+            <div class="danger-icon">
+              <i class="fa-solid fa-car-side"></i>
+            </div>
+            <div class="danger-content">
+              <h4>Cuidado com "Portadas"</h4>
+              <p>Mantenha distância de carros estacionados. Motoristas podem abrir portas sem olhar.</p>
+            </div>
+          </div>
+          
+          <div class="danger-alert">
+            <div class="danger-icon">
+              <i class="fa-solid fa-intersection"></i>
+            </div>
+            <div class="danger-content">
+              <h4>Atenção nos Cruzamentos</h4>
+              <p>Reduza a velocidade e verifique todos os lados antes de atravessar.</p>
+            </div>
+          </div>
+          
+          <div class="danger-alert">
+            <div class="danger-icon">
+              <i class="fa-solid fa-cloud-rain"></i>
+            </div>
+            <div class="danger-content">
+              <h4>Chuva e Pista Molhada</h4>
+              <p>Reduza a velocidade, aumente a distância de frenagem e evite manobras bruscas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Manutenção da Bicicleta -->
+      <section class="safety-section">
+        <h2><i class="fa-solid fa-tools"></i> Manutenção da Bicicleta</h2>
+        <div class="maintenance-checklist">
+          <div class="checklist-item">
+            <i class="fa-solid fa-check-circle"></i>
+            <span>Verifique a pressão dos pneus semanalmente</span>
+          </div>
+          <div class="checklist-item">
+            <i class="fa-solid fa-check-circle"></i>
+            <span>Teste os freios antes de cada pedalada</span>
+          </div>
+          <div class="checklist-item">
+            <i class="fa-solid fa-check-circle"></i>
+            <span>Lubrifique a corrente mensalmente</span>
+          </div>
+          <div class="checklist-item">
+            <i class="fa-solid fa-check-circle"></i>
+            <span>Verifique se os parafusos estão apertados</span>
+          </div>
+          <div class="checklist-item">
+            <i class="fa-solid fa-check-circle"></i>
+            <span>Mantenha as luzes funcionando</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Emergências -->
+      <section class="safety-section emergency-section">
+        <h2><i class="fa-solid fa-phone"></i> Em Caso de Emergência</h2>
+        <div class="emergency-contacts">
+          <div class="emergency-card">
+            <div class="emergency-icon">
+              <i class="fa-solid fa-ambulance"></i>
+            </div>
+            <h4>SAMU</h4>
+            <p class="emergency-number">192</p>
+            <p>Emergências médicas</p>
+          </div>
+          
+          <div class="emergency-card">
+            <div class="emergency-icon">
+              <i class="fa-solid fa-shield-alt"></i>
+            </div>
+            <h4>Polícia Militar</h4>
+            <p class="emergency-number">190</p>
+            <p>Ocorrências policiais</p>
+          </div>
+          
+          <div class="emergency-card">
+            <div class="emergency-icon">
+              <i class="fa-solid fa-car-crash"></i>
+            </div>
+            <h4>CTTU</h4>
+            <p class="emergency-number">(81) 3355-5100</p>
+            <p>Acidentes de trânsito</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="safety-cta">
+        <div class="cta-content">
+          <h3><i class="fa-solid fa-users"></i> Compartilhe sua experiência</h3>
+          <p>Tem alguma dica de segurança? Compartilhe no nosso fórum e ajude outros ciclistas!</p>
+          <a href="forum.html" class="btn btn-primary">
+            <i class="fa-solid fa-comments"></i> Ir para o Fórum
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 BikeHub Recife. Uma iniciativa de código aberto.</p>
+    </div>
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/mobile-menu.js"></script>
+</body>
+</html>
+

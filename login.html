@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Entrar - BikeHub Recife</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="img/bicycle.png" alt="Logo BikeHub Recife">
+        <h1>BikeHub Recife</h1>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="dados.html">Dados</a></li>
+          <li><a href="forum.html">Fórum</a></li>
+          <li><a href="wiki.html">Wiki</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <!-- Informações do usuário logado -->
+        <div id="user-info" style="display: none;">
+          <div class="user-dropdown">
+            <button class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+              <i class="fa-solid fa-user"></i>
+              <span id="user-name">Usuário</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="user-dropdown-menu" id="user-dropdown-menu">
+              <a href="perfil.html" class="dropdown-item">
+                <i class="fa-solid fa-user-circle"></i> Ver Perfil
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="fa-solid fa-question-circle"></i> Ajuda
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" onclick="logout()" class="dropdown-item logout">
+                <i class="fa-solid fa-sign-out-alt"></i> Sair
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Botão de login (quando não logado) -->
+        <div id="login-button">
+          <a href="login.html" class="btn btn-primary">
+            <i class="fa-solid fa-sign-in-alt"></i> Entrar
+          </a>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav-menu">
+    <a href="mapa.html">Mapa</a>
+    <a href="dados.html">Dados</a>
+    <a href="forum.html">Fórum</a>
+    <a href="wiki.html">Wiki</a>
+    <div id="mobile-auth-section">
+      <!-- Será preenchido dinamicamente -->
+    </div>
+  </nav>
+
+  <main class="container page-login">
+    <!-- Formulário de Login -->
+    <div class="login-box" id="login-form">
+      <h2><i class="fa-solid fa-right-to-bracket"></i> Entrar na Plataforma</h2>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="login-email"><i class="fa-regular fa-envelope"></i> Email</label>
+          <input type="email" id="login-email" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password"><i class="fa-solid fa-lock"></i> Senha</label>
+          <input type="password" id="login-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </form>
+      <div class="login-links">
+        <a href="#" onclick="showResetPassword()"><i class="fa-solid fa-key"></i> Esqueceu sua senha?</a>
+        <a href="#" onclick="showSignupForm()"><i class="fa-regular fa-user"></i> Criar uma conta</a>
+      </div>
+    </div>
+
+    <!-- Formulário de Cadastro -->
+    <div class="login-box" id="signup-form" style="display: none;">
+      <h2><i class="fa-regular fa-user"></i> Criar Conta</h2>
+      <form onsubmit="handleSignup(event)">
+        <div class="form-group">
+          <label for="signup-name"><i class="fa-solid fa-user"></i> Nome de Usuário</label>
+          <input type="text" id="signup-name" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-email"><i class="fa-regular fa-envelope"></i> Email</label>
+          <input type="email" id="signup-email" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-password"><i class="fa-solid fa-lock"></i> Senha</label>
+          <input type="password" id="signup-password" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label for="signup-confirm-password"><i class="fa-solid fa-lock"></i> Confirmar Senha</label>
+          <input type="password" id="signup-confirm-password" required minlength="6">
+        </div>
+        <button type="submit" class="btn btn-primary">Criar Conta</button>
+      </form>
+      <div class="login-links">
+        <a href="#" onclick="showLoginForm()"><i class="fa-solid fa-right-to-bracket"></i> Já tem uma conta? Entrar</a>
+      </div>
+    </div>
+
+    <!-- Formulário de Reset de Senha -->
+    <div class="login-box" id="reset-form" style="display: none;">
+      <h2><i class="fa-solid fa-key"></i> Recuperar Senha</h2>
+      <form onsubmit="handleResetPassword(event)">
+        <div class="form-group">
+          <label for="reset-email"><i class="fa-regular fa-envelope"></i> Email</label>
+          <input type="email" id="reset-email" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar Email de Recuperação</button>
+      </form>
+      <div class="login-links">
+        <a href="#" onclick="showLoginForm()"><i class="fa-solid fa-right-to-bracket"></i> Voltar ao Login</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 BikeHub Recife. Uma iniciativa de código aberto.</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

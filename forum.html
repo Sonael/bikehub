@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fórum - BikeHub Recife</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="img/bicycle.png" alt="Logo BikeHub Recife">
+        <h1>BikeHub Recife</h1>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="dados.html">Dados</a></li>
+          <li><a href="forum.html" class="active">Fórum</a></li>
+          <li><a href="wiki.html">Wiki</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <!-- Informações do usuário logado -->
+        <div id="user-info" style="display: none;">
+          <div class="user-dropdown">
+            <button class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+              <i class="fa-solid fa-user"></i>
+              <span id="user-name">Usuário</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="user-dropdown-menu" id="user-dropdown-menu">
+              <a href="perfil.html" class="dropdown-item">
+                <i class="fa-solid fa-user-circle"></i> Ver Perfil
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="fa-solid fa-question-circle"></i> Ajuda
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" onclick="logout()" class="dropdown-item logout">
+                <i class="fa-solid fa-sign-out-alt"></i> Sair
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Botão de login (quando não logado) -->
+        <div id="login-button">
+          <a href="login.html" class="btn btn-primary">
+            <i class="fa-solid fa-sign-in-alt"></i> Entrar
+          </a>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav-menu">
+    <a href="mapa.html">Mapa</a>
+    <a href="dados.html">Dados</a>
+    <a href="forum.html" class="active">Fórum</a>
+    <a href="wiki.html">Wiki</a>
+    <div id="mobile-auth-section">
+      <!-- Será preenchido dinamicamente -->
+    </div>
+  </nav>
+
+  <main class="container page-content">
+    <div class="wiki-header">
+      <h1>Fórum de Discussão</h1>
+      <div class="wiki-divider"></div>
+      <p>Participe, compartilhe suas experiências e ajude a construir uma cidade mais segura para ciclistas.</p>
+    </div>
+
+    <!-- Instruções e botão de criar tópico -->
+    <div class="forum-actions">
+      <div class="forum-instructions">
+        <div class="instruction-box">
+          <h3><i class="fa-solid fa-info-circle"></i> Como participar?</h3>
+          <p>Para adicionar um comentário, clique em um tópico existente ou crie um novo caso não exista um sobre o assunto que deseja discutir.</p>
+        </div>
+      </div>
+      
+      <!-- Botão para criar novo tópico (só aparece se logado) -->
+      <div class="create-topic-container">
+        <button id="create-topic-btn" class="btn btn-primary" onclick="showNewTopicModal()" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+          <i class="fa-solid fa-plus"></i> Criar Novo Tópico
+        </button>
+      </div>
+    </div>
+
+    <!-- Lista de tópicos -->
+    <div class="forum-list" id="forum-list">
+      <!-- Os tópicos serão carregados dinamicamente via JavaScript -->
+      <div class="loading-message">
+        <i class="fa-solid fa-spinner fa-spin"></i> Carregando tópicos...
+      </div>
+    </div>
+
+    <!-- Modal para criar novo tópico -->
+    <div id="new-topic-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close" onclick="hideNewTopicModal()">&times;</span>
+        <h2>Criar Novo Tópico</h2>
+        <form onsubmit="handleTopicSubmit(event)">
+          <div class="form-group">
+            <label for="topic-title">Título do Tópico</label>
+            <input type="text" id="topic-title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="topic-category">Categoria</label>
+            <select id="topic-category" name="category" required>
+              <option value="">Selecione uma categoria</option>
+              <option value="Infraestrutura">Infraestrutura</option>
+              <option value="Segurança">Segurança</option>
+              <option value="Sugestões">Sugestões</option>
+              <option value="Eventos">Eventos</option>
+              <option value="Geral">Geral</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="topic-content">Conteúdo</label>
+            <textarea id="topic-content" name="content" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="cursor: pointer;">Criar Tópico</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal para visualizar tópico e comentários -->
+    <div id="topic-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close" onclick="hideTopicModal()">&times;</span>
+        <div id="topic-details">
+          <!-- Detalhes do tópico serão carregados aqui -->
+        </div>
+        
+        <!-- Seção de comentários -->
+        <div class="comments-section">
+          <h3>Comentários</h3>
+          <div id="comments-container">
+            <!-- Comentários serão carregados aqui -->
+          </div>
+          
+          <!-- Formulário para novo comentário (só aparece se logado) -->
+          <div id="comment-form-container" style="display: none;">
+            <form onsubmit="handleCommentSubmit(event, currentTopicId)">
+              <div class="form-group">
+                <label for="new-comment">Adicionar Comentário</label>
+                <textarea id="new-comment" name="comment" rows="3" placeholder="Digite seu comentário..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Enviar Comentário</button>
+            </form>
+          </div>
+          
+          <div id="login-prompt" style="display: none;">
+            <p><a href="login.html">Faça login</a> para participar da discussão.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 BikeHub Recife. Uma iniciativa de código aberto.</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/mobile-menu.js"></script>
+  <script src="js/forum.js"></script>
+  <script src="js/forum-ui.js"></script>
+</body>
+</html>

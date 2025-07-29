@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meu Perfil - BikeHub Recife</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="img/bicycle.png" alt="Logo BikeHub Recife">
+        <h1>BikeHub Recife</h1>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="dados.html">Dados</a></li>
+          <li><a href="forum.html">Fórum</a></li>
+          <li><a href="wiki.html">Wiki</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <!-- Informações do usuário logado -->
+        <div id="user-info" style="display: none;">
+          <div class="user-dropdown">
+            <button class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+              <i class="fa-solid fa-user"></i>
+              <span id="user-name">Usuário</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="user-dropdown-menu" id="user-dropdown-menu">
+              <a href="perfil.html" class="dropdown-item active">
+                <i class="fa-solid fa-user-circle"></i> Ver Perfil
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="fa-solid fa-question-circle"></i> Ajuda
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" onclick="logout()" class="dropdown-item logout">
+                <i class="fa-solid fa-sign-out-alt"></i> Sair
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Botão de login (quando não logado) -->
+        <div id="login-button">
+          <a href="login.html" class="btn btn-primary">
+            <i class="fa-solid fa-sign-in-alt"></i> Entrar
+          </a>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav-menu">
+    <a href="mapa.html">Mapa</a>
+    <a href="dados.html">Dados</a>
+    <a href="forum.html">Fórum</a>
+    <a href="wiki.html">Wiki</a>
+    <div id="mobile-auth-section">
+      <!-- Será preenchido dinamicamente -->
+    </div>
+  </nav>
+
+  <main class="container page-content">
+    <div class="profile-header">
+      <h1><i class="fa-solid fa-user-circle"></i> Meu Perfil</h1>
+      <p>Gerencie suas informações pessoais e configurações da conta</p>
+    </div>
+
+    <div class="profile-content">
+      <!-- Informações do Usuário -->
+      <div class="profile-section">
+        <div class="section-header">
+          <h2><i class="fa-solid fa-user"></i> Informações Pessoais</h2>
+          <button class="btn btn-secondary" onclick="toggleEditMode()">
+            <i class="fa-solid fa-edit"></i> Editar
+          </button>
+        </div>
+        
+        <div class="profile-info" id="profile-info">
+          <div class="info-group">
+            <label>Nome de Usuário</label>
+            <div class="info-value" id="display-name">Carregando...</div>
+          </div>
+          <div class="info-group">
+            <label>Email</label>
+            <div class="info-value" id="user-email">Carregando...</div>
+          </div>
+          <div class="info-group">
+            <label>Membro desde</label>
+            <div class="info-value" id="member-since">Carregando...</div>
+          </div>
+        </div>
+
+        <!-- Formulário de Edição (oculto por padrão) -->
+        <div class="profile-edit" id="profile-edit" style="display: none;">
+          <form onsubmit="handleProfileUpdate(event)">
+            <div class="form-group">
+              <label for="edit-display-name">Nome de Usuário</label>
+              <input type="text" id="edit-display-name" name="displayName" required>
+            </div>
+            <div class="form-group">
+              <label for="edit-email">Email</label>
+              <input type="email" id="edit-email" name="email" required readonly>
+              <small>O email não pode ser alterado</small>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-save"></i> Salvar Alterações
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="cancelEdit()">
+                <i class="fa-solid fa-times"></i> Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Estatísticas do Usuário -->
+      <div class="profile-section">
+        <div class="section-header">
+          <h2><i class="fa-solid fa-chart-bar"></i> Suas Estatísticas</h2>
+        </div>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fa-solid fa-comments"></i>
+            </div>
+            <div class="stat-info">
+              <div class="stat-number" id="topics-count">0</div>
+              <div class="stat-label">Tópicos Criados</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fa-solid fa-comment"></i>
+            </div>
+            <div class="stat-info">
+              <div class="stat-number" id="comments-count">0</div>
+              <div class="stat-label">Comentários</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fa-solid fa-calendar"></i>
+            </div>
+            <div class="stat-info">
+              <div class="stat-number" id="days-active">0</div>
+              <div class="stat-label">Dias Ativo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Atividade Recente -->
+      <div class="profile-section">
+        <div class="section-header">
+          <h2><i class="fa-solid fa-history"></i> Atividade Recente</h2>
+        </div>
+        
+        <div class="activity-list" id="activity-list">
+          <div class="loading-message">
+            <i class="fa-solid fa-spinner fa-spin"></i> Carregando atividades...
+          </div>
+        </div>
+      </div>
+
+      <!-- Configurações de Segurança -->
+      <div class="profile-section">
+        <div class="section-header">
+          <h2><i class="fa-solid fa-shield-alt"></i> Segurança</h2>
+        </div>
+        
+        <div class="security-options">
+          <div class="security-item">
+            <div class="security-info">
+              <h4>Alterar Senha</h4>
+              <p>Mantenha sua conta segura com uma senha forte</p>
+            </div>
+            <button class="btn btn-outline" onclick="showChangePassword()">
+              <i class="fa-solid fa-key"></i> Alterar Senha
+            </button>
+          </div>
+          <div class="security-item">
+            <div class="security-info">
+              <h4>Excluir Conta</h4>
+              <p>Remover permanentemente sua conta e todos os dados</p>
+            </div>
+            <button class="btn btn-danger" onclick="showDeleteAccount()">
+              <i class="fa-solid fa-trash"></i> Excluir Conta
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para Alterar Senha -->
+    <div id="change-password-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close" onclick="hideChangePassword()">&times;</span>
+        <h2><i class="fa-solid fa-key"></i> Alterar Senha</h2>
+        <form onsubmit="handlePasswordChange(event)">
+          <div class="form-group">
+            <label for="current-password">Senha Atual</label>
+            <input type="password" id="current-password" name="currentPassword" required>
+          </div>
+          <div class="form-group">
+            <label for="new-password">Nova Senha</label>
+            <input type="password" id="new-password" name="newPassword" required minlength="6">
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirmar Nova Senha</label>
+            <input type="password" id="confirm-password" name="confirmPassword" required minlength="6">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-save"></i> Alterar Senha
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="hideChangePassword()">
+              <i class="fa-solid fa-times"></i> Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 BikeHub Recife. Uma iniciativa de código aberto.</p>
+    </div>
+  </footer>
+  
+  <script src="js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Colaborativo - BikeHub Recife</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="img/bicycle.png" alt="Logo BikeHub Recife">
+                <h1>BikeHub Recife</h1>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="mapa.html" class="active">Mapa</a></li>
+                    <li><a href="dados.html">Dados</a></li>
+                    <li><a href="forum.html">Fórum</a></li>
+                    <li><a href="wiki.html">Wiki</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <!-- Informações do usuário logado -->
+                <div id="user-info" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+                            <i class="fa-solid fa-user"></i>
+                            <span id="user-name">Usuário</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown-menu" id="user-dropdown-menu">
+                            <a href="perfil.html" class="dropdown-item">
+                                <i class="fa-solid fa-user-circle"></i> Ver Perfil
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa-solid fa-question-circle"></i> Ajuda
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()" class="dropdown-item logout">
+                                <i class="fa-solid fa-sign-out-alt"></i> Sair
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Botão de login (quando não logado) -->
+                <div id="login-button">
+                    <a href="login.html" class="btn btn-primary">Entrar</a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    <nav class="mobile-nav" id="mobile-nav-menu">
+        <a href="mapa.html" class="active">Mapa</a>
+        <a href="dados.html">Dados</a>
+        <a href="forum.html">Fórum</a>
+        <a href="wiki.html">Wiki</a>
+        <div id="mobile-auth-section">
+            <!-- Será preenchido dinamicamente -->
+        </div>
+    </nav>
+    
+    <main class="page-map">
+        <div class="container">
+            <div class="map-info">
+                <h2>Mapa Colaborativo de Ciclofaixas</h2>
+                <p class="map-notice">
+                    <strong>Nota:</strong> Este mapa ainda não está 100% implementado. Quando estiver pronto, 
+                    exibirá todas as ciclofaixas existentes no Recife para auxiliar ciclistas na navegação segura pela cidade.
+                </p>
+            </div>
+        </div>
+        <div id="map"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 BikeHub Recife. Uma iniciativa de código aberto.</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/maps.js"></script>
+</body>
+</html>

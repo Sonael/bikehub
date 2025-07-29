@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wiki - BikeHub Recife</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="img/bicycle.png" alt="Logo BikeHub Recife">
+        <h1>BikeHub Recife</h1>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="dados.html">Dados</a></li>
+          <li><a href="forum.html">Fórum</a></li>
+          <li><a href="wiki.html" class="active">Wiki</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <!-- Informações do usuário logado -->
+        <div id="user-info" style="display: none;">
+          <div class="user-dropdown">
+            <button class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+              <i class="fa-solid fa-user"></i>
+              <span id="user-name">Usuário</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="user-dropdown-menu" id="user-dropdown-menu">
+              <a href="perfil.html" class="dropdown-item">
+                <i class="fa-solid fa-user-circle"></i> Ver Perfil
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="fa-solid fa-question-circle"></i> Ajuda
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" onclick="logout()" class="dropdown-item logout">
+                <i class="fa-solid fa-sign-out-alt"></i> Sair
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Botão de login (quando não logado) -->
+        <div id="login-button">
+          <a href="login.html" class="btn btn-primary">
+            <i class="fa-solid fa-sign-in-alt"></i> Entrar
+          </a>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav-menu">
+    <a href="mapa.html">Mapa</a>
+    <a href="dados.html">Dados</a>
+    <a href="forum.html">Fórum</a>
+    <a href="wiki.html" class="active">Wiki</a>
+    <div id="mobile-auth-section">
+      <!-- Será preenchido dinamicamente -->
+    </div>
+  </nav>
+
+  <main class="container page-content">
+    <div class="wiki-header">
+      <h1>Wiki Cicloviária do Recife</h1>
+      <div class="wiki-divider"></div>
+      <p>Uma enciclopédia colaborativa sobre mobilidade urbana por bicicleta na cidade do Recife</p>
+    </div>
+
+    <div class="wiki-navigation">
+      <div class="wiki-nav-item active" onclick="showWikiSection('plano-diretor')">
+        <i class="fa-solid fa-map"></i> Plano Diretor Cicloviário
+      </div>
+      <div class="wiki-nav-item" onclick="showWikiSection('infraestrutura')">
+        <i class="fa-solid fa-road"></i> Infraestrutura
+      </div>
+      <div class="wiki-nav-item" onclick="showWikiSection('seguranca')">
+        <i class="fa-solid fa-shield-alt"></i> Segurança
+      </div>
+      <div class="wiki-nav-item" onclick="showWikiSection('legislacao')">
+        <i class="fa-solid fa-gavel"></i> Legislação
+      </div>
+      <div class="wiki-nav-item" onclick="showWikiSection('estatisticas')">
+        <i class="fa-solid fa-chart-bar"></i> Estatísticas
+      </div>
+    </div>
+
+    <div class="wiki-content">
+      <!-- Seção Plano Diretor -->
+      <article class="wiki-section active" id="plano-diretor">
+        <h2><i class="fa-solid fa-map"></i> Plano Diretor Cicloviário do Recife</h2>
+        <p class="wiki-meta">
+          <i class="fa-regular fa-clock"></i> Última atualização: 15 de Janeiro de 2025 | 
+          <i class="fa-solid fa-users"></i> Contribuidores: <strong>GestaoPublica, Mariana_Pesquisa, CiclistaUrbano</strong>
+        </p>
+        
+        <div class="wiki-summary">
+          <h3>Resumo Executivo</h3>
+          <p>O Plano Diretor Cicloviário (PDC) do Recife é um documento estratégico que estabelece diretrizes para o desenvolvimento da mobilidade por bicicleta na cidade, visando criar uma rede integrada, segura e acessível para todos os cidadãos.</p>
+        </div>
+
+        <h3>Principais Eixos Estratégicos</h3>
+        <div class="wiki-grid">
+          <div class="wiki-card">
+            <h4><i class="fa-solid fa-route"></i> Expansão da Malha Cicloviária</h4>
+            <p>Meta de 300km de ciclovias e ciclofaixas até 2030, conectando todos os bairros da cidade.</p>
+          </div>
+          <div class="wiki-card">
+            <h4><i class="fa-solid fa-bus"></i> Integração Modal</h4>
+            <p>Conexão com estações de metrô, BRT e terminais de ônibus, incluindo bicicletários seguros.</p>
+          </div>
+          <div class="wiki-card">
+            <h4><i class="fa-solid fa-graduation-cap"></i> Educação no Trânsito</h4>
+            <p>Campanhas educativas e cursos de capacitação para ciclistas e motoristas.</p>
+          </div>
+          <div class="wiki-card">
+            <h4><i class="fa-solid fa-tools"></i> Manutenção e Qualidade</h4>
+            <p>Programa permanente de manutenção e melhoria da infraestrutura existente.</p>
+          </div>
+        </div>
+
+        <h3>Cronograma de Implementação</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2025</div>
+            <div class="timeline-content">
+              <h4>Fase 1: Eixos Principais</h4>
+              <p>Conclusão das ciclovias nos corredores de maior demanda: Boa Viagem, Espinheiro e Centro.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2027</div>
+            <div class="timeline-content">
+              <h4>Fase 2: Conexões Regionais</h4>
+              <p>Ligação entre bairros periféricos e integração com municípios da RMR.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2030</div>
+            <div class="timeline-content">
+              <h4>Fase 3: Consolidação</h4>
+              <p>Rede completa com 300km de infraestrutura cicloviária integrada.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Seção Infraestrutura -->
+      <article class="wiki-section" id="infraestrutura">
+        <h2><i class="fa-solid fa-road"></i> Infraestrutura Cicloviária</h2>
+        <p class="wiki-meta">
+          <i class="fa-regular fa-clock"></i> Última atualização: 12 de Janeiro de 2025 | 
+          <i class="fa-solid fa-users"></i> Contribuidores: <strong>EngenheiraCivil, PlanejadorUrbano</strong>
+        </p>
+
+        <h3>Tipos de Infraestrutura</h3>
+        <div class="infrastructure-types">
+          <div class="infra-type">
+            <h4><i class="fa-solid fa-road"></i> Ciclovias</h4>
+            <p><strong>Definição:</strong> Vias exclusivas para bicicletas, fisicamente separadas do tráfego de veículos.</p>
+            <p><strong>Extensão atual:</strong> 87 km</p>
+            <p><strong>Principais corredores:</strong> Av. Boa Viagem, Av. Agamenon Magalhães, Cais José Estelita</p>
+          </div>
+          <div class="infra-type">
+            <h4><i class="fa-solid fa-stripe-s"></i> Ciclofaixas</h4>
+            <p><strong>Definição:</strong> Faixas demarcadas na via, compartilhadas com o tráfego de veículos.</p>
+            <p><strong>Extensão atual:</strong> 45 km</p>
+            <p><strong>Principais vias:</strong> Rua da Aurora, Av. Norte, Av. Conde da Boa Vista</p>
+          </div>
+          <div class="infra-type">
+            <h4><i class="fa-solid fa-parking"></i> Bicicletários</h4>
+            <p><strong>Definição:</strong> Locais seguros para estacionamento de bicicletas.</p>
+            <p><strong>Quantidade atual:</strong> 156 unidades</p>
+            <p><strong>Localizações:</strong> Estações de metrô, universidades, shopping centers</p>
+          </div>
+        </div>
+
+        <h3>Padrões Técnicos</h3>
+        <div class="technical-standards">
+          <div class="standard-item">
+            <h4>Largura Mínima</h4>
+            <p>Ciclovias: 2,5m (unidirecional) | 3,0m (bidirecional)</p>
+          </div>
+          <div class="standard-item">
+            <h4>Sinalização</h4>
+            <p>Placas, pinturas e semáforos específicos para ciclistas</p>
+          </div>
+          <div class="standard-item">
+            <h4>Iluminação</h4>
+            <p>LED com 20 lux mínimo para segurança noturna</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Seção Segurança -->
+      <article class="wiki-section" id="seguranca">
+        <h2><i class="fa-solid fa-shield-alt"></i> Segurança no Ciclismo Urbano</h2>
+        <p class="wiki-meta">
+          <i class="fa-regular fa-clock"></i> Última atualização: 10 de Janeiro de 2025 | 
+          <i class="fa-solid fa-users"></i> Contribuidores: <strong>DetranPE, CiclistaSeguro</strong>
+        </p>
+
+        <h3>Equipamentos de Proteção Individual</h3>
+        <div class="safety-equipment">
+          <div class="equipment-item">
+            <i class="fa-solid fa-hard-hat"></i>
+            <h4>Capacete</h4>
+            <p>Obrigatório para menores de 18 anos. Recomendado para todos os ciclistas.</p>
+          </div>
+          <div class="equipment-item">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h4>Iluminação</h4>
+            <p>Luz branca dianteira e vermelha traseira obrigatórias no período noturno.</p>
+          </div>
+          <div class="equipment-item">
+            <i class="fa-solid fa-eye"></i>
+            <h4>Vestuário Reflexivo</h4>
+            <p>Roupas claras e elementos reflexivos aumentam a visibilidade.</p>
+          </div>
+        </div>
+
+        <h3>Regras de Trânsito para Ciclistas</h3>
+        <ul class="traffic-rules">
+          <li>Trafegar sempre no mesmo sentido dos veículos</li>
+          <li>Respeitar semáforos e sinalizações</li>
+          <li>Usar preferencialmente ciclovias e ciclofaixas</li>
+          <li>Sinalizar conversões com gestos</li>
+          <li>Manter distância segura de veículos</li>
+          <li>Não usar celular enquanto pedala</li>
+        </ul>
+
+        <h3>Pontos de Atenção</h3>
+        <div class="danger-zones">
+          <div class="danger-item">
+            <h4><i class="fa-solid fa-exclamation-triangle"></i> Cruzamentos</h4>
+            <p>Reduzir velocidade e verificar todos os lados antes de atravessar.</p>
+          </div>
+          <div class="danger-item">
+            <h4><i class="fa-solid fa-car"></i> Portas de Veículos</h4>
+            <p>Manter distância de carros estacionados para evitar "portadas".</p>
+          </div>
+          <div class="danger-item">
+            <h4><i class="fa-solid fa-cloud-rain"></i> Condições Climáticas</h4>
+            <p>Redobrar cuidado em dias chuvosos - pista escorregadia e visibilidade reduzida.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Seção Legislação -->
+      <article class="wiki-section" id="legislacao">
+        <h2><i class="fa-solid fa-gavel"></i> Legislação e Normas</h2>
+        <p class="wiki-meta">
+          <i class="fa-regular fa-clock"></i> Última atualização: 8 de Janeiro de 2025 | 
+          <i class="fa-solid fa-users"></i> Contribuidores: <strong>AdvogadoTransito, LegisladorUrbano</strong>
+        </p>
+
+        <h3>Marco Legal Nacional</h3>
+        <div class="legal-framework">
+          <div class="law-item">
+            <h4>Lei Federal 12.587/2012</h4>
+            <p><strong>Política Nacional de Mobilidade Urbana</strong> - Estabelece diretrizes para o transporte não motorizado.</p>
+          </div>
+          <div class="law-item">
+            <h4>Código de Trânsito Brasileiro</h4>
+            <p><strong>Lei 9.503/1997</strong> - Define regras específicas para ciclistas e infrações relacionadas.</p>
+          </div>
+        </div>
+
+        <h3>Legislação Municipal</h3>
+        <div class="municipal-laws">
+          <div class="law-item">
+            <h4>Lei Municipal 18.112/2015</h4>
+            <p>Institui o Sistema Cicloviário do Recife e estabelece diretrizes para sua implementação.</p>
+          </div>
+          <div class="law-item">
+            <h4>Decreto 32.547/2018</h4>
+            <p>Regulamenta o uso de bicicletas elétricas e patinetes no município.</p>
+          </div>
+          <div class="law-item">
+            <h4>Lei Municipal 18.671/2019</h4>
+            <p>Cria o programa "Recife Bike Friendly" para empresas que incentivam o uso da bicicleta.</p>
+          </div>
+        </div>
+
+        <h3>Infrações e Penalidades</h3>
+        <div class="violations-table">
+          <div class="violation-row">
+            <div class="violation-desc">Trafegar na contramão</div>
+            <div class="violation-penalty">Multa: R$ 88,38 | 3 pontos na CNH</div>
+          </div>
+          <div class="violation-row">
+            <div class="violation-desc">Não respeitar semáforo</div>
+            <div class="violation-penalty">Multa: R$ 195,23 | 5 pontos na CNH</div>
+          </div>
+          <div class="violation-row">
+            <div class="violation-desc">Conduzir sem equipamentos obrigatórios</div>
+            <div class="violation-penalty">Multa: R$ 88,38 | 3 pontos na CNH</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Seção Estatísticas -->
+      <article class="wiki-section" id="estatisticas">
+        <h2><i class="fa-solid fa-chart-bar"></i> Estatísticas e Dados</h2>
+        <p class="wiki-meta">
+          <i class="fa-regular fa-clock"></i> Última atualização: 5 de Janeiro de 2025 | 
+          <i class="fa-solid fa-users"></i> Contribuidores: <strong>AnalistaDados, PesquisadorMobilidade</strong>
+        </p>
+
+        <h3>Números do Ciclismo no Recife</h3>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">132km</div>
+            <div class="stat-label">Extensão Total da Malha Cicloviária</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">156</div>
+            <div class="stat-label">Bicicletários Públicos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">45.000</div>
+            <div class="stat-label">Ciclistas Diários Estimados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">23%</div>
+            <div class="stat-label">Crescimento no Uso (2020-2024)</div>
+          </div>
+        </div>
+
+        <h3>Acidentes e Segurança</h3>
+        <div class="safety-stats">
+          <div class="safety-stat">
+            <h4>Acidentes com Ciclistas (2024)</h4>
+            <p><span class="stat-highlight">127 ocorrências</span> - Redução de 15% em relação a 2023</p>
+          </div>
+          <div class="safety-stat">
+            <h4>Principais Causas</h4>
+            <p>1. Desrespeito à preferência (34%)<br>
+               2. Conversões sem sinalização (28%)<br>
+               3. Abertura de portas (22%)</p>
+          </div>
+          <div class="safety-stat">
+            <h4>Horários de Maior Risco</h4>
+            <p>Pico matinal: 7h-9h (31%)<br>
+               Pico vespertino: 17h-19h (42%)</p>
+          </div>
+        </div>
+
+        <h3>Perfil dos Ciclistas</h3>
+        <div class="cyclist-profile">
+          <div class="profile-item">
+            <h4>Faixa Etária</h4>
+            <p>25-40 anos: 45%<br>18-25 anos: 28%<br>40-60 anos: 22%<br>Acima de 60: 5%</p>
+          </div>
+          <div class="profile-item">
+            <h4>Motivo Principal</h4>
+            <p>Trabalho: 52%<br>Lazer: 31%<br>Exercício: 12%<br>Estudos: 5%</p>
+          </div>
+          <div class="profile-item">
+            <h4>Frequência de Uso</h4>
+            <p>Diário: 38%<br>3-4x por semana: 29%<br>Fins de semana: 23%<br>Eventual: 10%</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 BikeHub Recife. Uma iniciativa de código aberto.</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/mobile-menu.js"></script>
+  <script src="js/wiki.js"></script>
+</body>
+</html>

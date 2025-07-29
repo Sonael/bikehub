@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikeHub Recife - Conectando Ciclistas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="img/bicycle.png" alt="Logo BikeHub Recife">
+                <h1>BikeHub Recife</h1>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="dados.html">Dados</a></li>
+                    <li><a href="forum.html">Fórum</a></li>
+                    <li><a href="wiki.html">Wiki</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <!-- Informações do usuário logado -->
+                <div id="user-info" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+                            <i class="fa-solid fa-user"></i>
+                            <span id="user-name">Usuário</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown-menu" id="user-dropdown-menu">
+                            <a href="perfil.html" class="dropdown-item">
+                                <i class="fa-solid fa-user-circle"></i> Ver Perfil
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa-solid fa-question-circle"></i> Ajuda
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()" class="dropdown-item logout">
+                                <i class="fa-solid fa-sign-out-alt"></i> Sair
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Botão de login (quando não logado) -->
+                <div id="login-button">
+                    <a href="login.html" class="btn btn-primary">
+                        <i class="fa-solid fa-sign-in-alt"></i> Entrar
+                    </a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    <nav class="mobile-nav" id="mobile-nav-menu">
+        <a href="mapa.html">Mapa</a>
+        <a href="dados.html">Dados</a>
+        <a href="forum.html">Fórum</a>
+        <a href="wiki.html">Wiki</a>
+        <div id="mobile-auth-section">
+            <!-- Será preenchido dinamicamente -->
+        </div>
+    </nav>
+
+    <main class="container page-home">
+        <div class="card-grid">
+            <div class="card card-large card-map">
+                <h2>MAPA COLABORATIVO DE RISCO</h2>
+                <p>Visualize e reporte pontos de perigo, acidentes e problemas na infraestrutura cicloviária do Recife.</p>
+                <a href="mapa.html" class="btn">Ver mapa</a>
+            </div>
+
+            <div class="card card-forum">
+                <h2>FÓRUM</h2>
+                <div class="forum-topics" id="home-forum-topics">
+                    <div class="loading-topics">
+                        <i class="fa-solid fa-spinner fa-spin"></i> Carregando discussões...
+                    </div>
+                </div>
+                 <a href="forum.html" class="btn">Ir para o Fórum</a>
+            </div>
+
+            <div class="card card-community">
+                <h2>DADOS E INTELIGÊNCIA</h2>
+                <p>Explore gráficos interativos sobre acidentes, fluxo de ciclistas e infraestrutura.</p>
+                <a href="dados.html" class="btn">Ver dados</a>
+            </div>
+
+            <div class="card card-wiki">
+                <h2>WIKI CICLOVIÁRIA DO RECIFE</h2>
+                <p>Uma enciclopédia colaborativa sobre a mobilidade por bicicleta na cidade.</p>
+                <a href="wiki.html" class="btn">Ver wiki</a>
+            </div>
+
+            <div class="card card-safety">
+                <h2>SEGURANÇA EM PRIMEIRO LUGAR</h2>
+                <div class="safety-tips">
+                    <div class="tip-item">
+                        <i class="fa-solid fa-hard-hat"></i>
+                        <span>Use sempre capacete</span>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <span>Iluminação noturna</span>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>Roupas reflexivas</span>
+                    </div>
+                </div>
+                <a href="dicas-seguranca.html" class="btn">Dicas de Segurança</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 BikeHub Recife. Uma iniciativa de código aberto.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/forum.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/dropdown.js"></script>
+    <script src="js/mobile-menu.js"></script>

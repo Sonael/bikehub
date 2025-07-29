@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados e Inteligência - BikeHub Recife</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="img/bicycle.png" alt="Logo BikeHub Recife">
+                <h1>BikeHub Recife</h1>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="dados.html" class="active">Dados</a></li>
+                    <li><a href="forum.html">Fórum</a></li>
+                    <li><a href="wiki.html">Wiki</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <!-- Informações do usuário logado -->
+                <div id="user-info" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+                            <i class="fa-solid fa-user"></i>
+                            <span id="user-name">Usuário</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown-menu" id="user-dropdown-menu">
+                            <a href="perfil.html" class="dropdown-item">
+                                <i class="fa-solid fa-user-circle"></i> Ver Perfil
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fa-solid fa-question-circle"></i> Ajuda
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()" class="dropdown-item logout">
+                                <i class="fa-solid fa-sign-out-alt"></i> Sair
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Botão de login (quando não logado) -->
+                <div id="login-button">
+                    <a href="login.html" class="btn btn-primary">
+                        <i class="fa-solid fa-sign-in-alt"></i> Entrar
+                    </a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    <nav class="mobile-nav" id="mobile-nav-menu">
+        <a href="mapa.html">Mapa</a>
+        <a href="dados.html" class="active">Dados</a>
+        <a href="forum.html">Fórum</a>
+        <a href="wiki.html">Wiki</a>
+        <div id="mobile-auth-section">
+            <!-- Será preenchido dinamicamente -->
+        </div>
+    </nav>
+
+    <main class="container page-content">
+        <h1>Painel de Dados e Inteligência</h1>
+        <p>Visualize dados sobre a segurança cicloviária no Recife. Os gráficos abaixo são exemplos interativos baseados em dados abertos.</p>
+        
+        <!-- Seletor de base de dados -->
+        <div class="data-selector">
+            <label for="database-select">
+                <i class="fa-solid fa-database"></i> Selecione a base de dados:
+            </label>
+            <select id="database-select" onchange="changeDatabase()">
+                <option value="cttu">CTTU - Autarquia de Trânsito e Transporte Urbano</option>
+                <option value="prf">PRF - Polícia Rodoviária Federal</option>
+            </select>
+        </div>
+        
+        <div class="dashboard" id="dashboard">
+            <div class="chart-container">
+                <h2 id="chart1-title">Distribuição por Tipo de Acidente (Top 10)</h2>
+                <br><br>
+                <img id="chart1-img" src="img/grafico_cttu_1.png" alt="Gráfico de barras de distribuição por Tipo de Acidente (Top 10)">
+            </div>
+            <div class="chart-container">
+                <h2 id="chart2-title">Evolução Mensal de Acidentes</h2>
+                <br><br>
+                <img id="chart2-img" src="img/grafico_cttu_2.png" alt="Gráfico de linha da evolução mensal de acidentes">
+            </div>
+        </div>
+        
+        <!-- Link para dashboard externo -->
+        <div class="external-dashboard">
+            <div class="dashboard-link-card">
+                <h3><i class="fa-solid fa-external-link-alt"></i> Dashboard Completo</h3>
+                <p>Acesse nosso dashboard completo com informações detalhadas sobre acidentes e ciclistas, desenvolvido pela nossa equipe.</p>
+                <a href="https://sonael.github.io/Analise_Dados_Acidentes/dashboard_v4.html" target="_blank" class="btn btn-primary">
+                    <i class="fa-solid fa-chart-line"></i> Acessar Dashboard Completo
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 BikeHub Recife. Uma iniciativa de código aberto.</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/dados.js"></script>
+</body>
+</html>
